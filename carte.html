@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Vignobles - Domaine des Vignes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🍇 Domaine des Vignes</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="carte.html" class="active">Nos Vignobles</a></li>
+                <li><a href="favoris.html" class="nav-icon" title="Favoris">❤️ <span class="badge" id="favCount">0</span></a></li>
+                <li><a href="panier.html" class="nav-icon" title="Panier">🛒 <span class="badge" id="cartCount">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Nos Vignobles</h2>
+            <p>Découvrez l'emplacement de nos domaines viticoles</p>
+        </div>
+    </section>
+
+    <!-- Carte Interactive -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <div id="map" class="map">
+                    <!-- La carte interactive sera intégrée ici (Leaflet, Google Maps, etc.) -->
+                    <div class="map-placeholder">
+                        <p>🗺️ Carte interactive</p>
+                        <p class="map-info">Intégrez ici votre solution de cartographie (Leaflet, Google Maps, etc.)</p>
+                    </div>
+                </div>
+                
+                <!-- Légende -->
+                <div class="map-legend">
+                    <h3>Nos Parcelles</h3>
+                    <div class="legend-item">
+                        <span class="legend-marker legend-rouge"></span>
+                        <span>Vignoble - Cépages Rouges</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker legend-blanc"></span>
+                        <span>Vignoble - Cépages Blancs</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker legend-rose"></span>
+                        <span>Vignoble - Cépages Rosés</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker legend-cave"></span>
+                        <span>Cave et Domaine</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations sur les vignobles -->
+            <div class="vineyards-info">
+                <h3>Nos Parcelles</h3>
+                <div class="vineyards-grid">
+                    <div class="vineyard-card">
+                        <div class="vineyard-icon">🍇</div>
+                        <h4>Parcelle des Coteaux</h4>
+                        <p><strong>Surface:</strong> 15 hectares</p>
+                        <p><strong>Cépages:</strong> Cabernet Sauvignon, Merlot</p>
+                        <p><strong>Exposition:</strong> Sud-Est</p>
+                        <p>Notre parcelle historique, plantée en 1920, produit nos meilleurs rouges.</p>
+                    </div>
+
+                    <div class="vineyard-card">
+                        <div class="vineyard-icon">🥂</div>
+                        <h4>Parcelle de la Vallée</h4>
+                        <p><strong>Surface:</strong> 12 hectares</p>
+                        <p><strong>Cépages:</strong> Chardonnay, Sauvignon Blanc</p>
+                        <p><strong>Exposition:</strong> Sud-Ouest</p>
+                        <p>Terroir argilo-calcaire idéal pour nos vins blancs élégants et minéraux.</p>
+                    </div>
+
+                    <div class="vineyard-card">
+                        <div class="vineyard-icon">🌸</div>
+                        <h4>Parcelle du Plateau</h4>
+                        <p><strong>Surface:</strong> 8 hectares</p>
+                        <p><strong>Cépages:</strong> Grenache, Cinsault</p>
+                        <p><strong>Exposition:</strong> Sud</p>
+                        <p>Exposition optimale pour des rosés fruités et rafraîchissants.</p>
+                    </div>
+
+                    <div class="vineyard-card">
+                        <div class="vineyard-icon">🏛️</div>
+                        <h4>Le Domaine</h4>
+                        <p><strong>Surface:</strong> 5 hectares</p>
+                        <p><strong>Installations:</strong> Cave, Chai, Boutique</p>
+                        <p><strong>Année:</strong> Construit en 1920</p>
+                        <p>Notre domaine historique où sont vinifiés et élevés tous nos vins.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Visite -->
+    <section class="visit-section">
+        <div class="container">
+            <h2 class="section-title">Visitez Notre Domaine</h2>
+            <div class="visit-content">
+                <p>
+                    Nous vous accueillons toute l'année pour découvrir nos vignobles et déguster nos vins. 
+                    Visites guidées, ateliers d'œnologie et dégustations sur réservation.
+                </p>
+                <div class="visit-info">
+                    <div class="info-block">
+                        <h4>📍 Adresse</h4>
+                        <p>Route des Vignes<br>44000 Nantes, France</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>📞 Contact</h4>
+                        <p>Tél: 02 XX XX XX XX<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="11727e7f6570726551757e7c70787f743c6778767f74623f7763">[email&#160;protected]</a></p>
+                    </div>
+                    <div class="info-block">
+                        <h4>🕒 Horaires</h4>
+                        <p>Lun-Sam: 9h-18h<br>Dimanche: Sur réservation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domaine des Vignes</h3>
+                    <p>Vins d'excellence depuis 1920</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="carte.html">Nos Vignobles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Route des Vignes<br>44000 Nantes<br>France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Domaine des Vignes. 

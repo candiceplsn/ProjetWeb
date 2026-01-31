@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique - Domaine des Vignes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🍇 Domaine des Vignes</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boutique.html" class="active">Boutique</a></li>
+                <li><a href="carte.html">Nos Vignobles</a></li>
+                <li><a href="favoris.html" class="nav-icon" title="Favoris">❤️ <span class="badge" id="favCount">0</span></a></li>
+                <li><a href="panier.html" class="nav-icon" title="Panier">🛒 <span class="badge" id="cartCount">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Notre Sélection de Vins</h2>
+            <p>Découvrez nos crus d'exception</p>
+        </div>
+    </section>
+
+    <!-- Boutique -->
+    <section class="shop">
+        <div class="container">
+            <div class="shop-layout">
+                <!-- Filtres -->
+                <aside class="filters">
+                    <h3>Filtres</h3>
+                    
+                    <div class="filter-group">
+                        <h4>Type de vin</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="type" value="rouge">
+                            <span>Rouge</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="type" value="blanc">
+                            <span>Blanc</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="type" value="rose">
+                            <span>Rosé</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Prix</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="prix" value="0-15">
+                            <span>Moins de 15€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="prix" value="15-30">
+                            <span>15€ - 30€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="prix" value="30-50">
+                            <span>30€ - 50€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="prix" value="50+">
+                            <span>Plus de 50€</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Année</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="annee" value="2023">
+                            <span>2023</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="annee" value="2022">
+                            <span>2022</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="annee" value="2021">
+                            <span>2021</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="annee" value="2020">
+                            <span>2020</span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-secondary" id="resetFilters">Réinitialiser</button>
+                </aside>
+
+                <!-- Produits -->
+                <div class="products">
+                    <div class="products-header">
+                        <p class="products-count"><span id="productCount">12</span> vins disponibles</p>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="">Trier par</option>
+                            <option value="prix-asc">Prix croissant</option>
+                            <option value="prix-desc">Prix décroissant</option>
+                            <option value="nom">Nom</option>
+                            <option value="annee">Année</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Les produits seront ajoutés ici via JS/PHP -->
+                        <!-- Exemples statiques pour la structure -->
+                        
+                        <div class="product-card" data-type="rouge" data-prix="25" data-annee="2022" data-id="1">
+                            <button class="fav-btn" onclick="toggleFavorite(1)">🤍</button>
+                            <a href="produit.html?id=1" class="product-link">
+                                <div class="product-image">🍷</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Château Rouge 2022</h3>
+                                    <p class="product-type">Vin Rouge</p>
+                                    <p class="product-description">Un rouge charpenté aux arômes de fruits noirs</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">25,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(1)">Ajouter au panier</button>
+                        </div>
+
+                        <div class="product-card" data-type="blanc" data-prix="18" data-annee="2023" data-id="2">
+                            <button class="fav-btn" onclick="toggleFavorite(2)">🤍</button>
+                            <a href="produit.html?id=2" class="product-link">
+                                <div class="product-image">🥂</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Domaine Blanc 2023</h3>
+                                    <p class="product-type">Vin Blanc</p>
+                                    <p class="product-description">Fraîcheur et élégance pour ce blanc sec</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">18,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(2)">Ajouter au panier</button>
+                        </div>
+
+                        <div class="product-card" data-type="rose" data-prix="15" data-annee="2023" data-id="3">
+                            <button class="fav-btn" onclick="toggleFavorite(3)">🤍</button>
+                            <a href="produit.html?id=3" class="product-link">
+                                <div class="product-image">🌸</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Rosé d'Été 2023</h3>
+                                    <p class="product-type">Vin Rosé</p>
+                                    <p class="product-description">Léger et fruité, parfait pour l'été</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">15,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(3)">Ajouter au panier</button>
+                        </div>
+
+                        <div class="product-card" data-type="rouge" data-prix="45" data-annee="2020" data-id="4">
+                            <button class="fav-btn" onclick="toggleFavorite(4)">🤍</button>
+                            <a href="produit.html?id=4" class="product-link">
+                                <div class="product-image">🍷</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Grand Cru 2020</h3>
+                                    <p class="product-type">Vin Rouge</p>
+                                    <p class="product-description">Notre cuvée prestige, élevée en fût de chêne</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">45,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(4)">Ajouter au panier</button>
+                        </div>
+
+                        <div class="product-card" data-type="blanc" data-prix="32" data-annee="2021" data-id="5">
+                            <button class="fav-btn" onclick="toggleFavorite(5)">🤍</button>
+                            <a href="produit.html?id=5" class="product-link">
+                                <div class="product-image">🥂</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Cuvée Prestige Blanc 2021</h3>
+                                    <p class="product-type">Vin Blanc</p>
+                                    <p class="product-description">Complexe et raffiné, idéal pour les grandes occasions</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">32,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(5)">Ajouter au panier</button>
+                        </div>
+
+                        <div class="product-card" data-type="rouge" data-prix="22" data-annee="2022" data-id="6">
+                            <button class="fav-btn" onclick="toggleFavorite(6)">🤍</button>
+                            <a href="produit.html?id=6" class="product-link">
+                                <div class="product-image">🍷</div>
+                                <div class="product-info">
+                                    <h3 class="product-name">Terroir Rouge 2022</h3>
+                                    <p class="product-type">Vin Rouge</p>
+                                    <p class="product-description">Expression pure de notre terroir</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">22,00 €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="btn btn-small btn-add-cart" onclick="addToCart(6)">Ajouter au panier</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domaine des Vignes</h3>
+                    <p>Vins d'excellence depuis 1920</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="carte.html">Nos Vignobles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Route des Vignes<br>44000 Nantes<br>France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shop.js"></script>
+</body>
+</html>

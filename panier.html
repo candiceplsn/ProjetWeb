@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - Domaine des Vignes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🍇 Domaine des Vignes</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="carte.html">Nos Vignobles</a></li>
+                <li><a href="favoris.html" class="nav-icon" title="Favoris">❤️ <span class="badge" id="favCount">0</span></a></li>
+                <li><a href="panier.html" class="nav-icon active" title="Panier">🛒 <span class="badge" id="cartCount">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Mon Panier</h2>
+            <p>Finalisez votre commande</p>
+        </div>
+    </section>
+
+    <!-- Panier -->
+    <section class="cart-section">
+        <div class="container">
+            <div id="emptyCart" class="empty-state">
+                <div class="empty-icon">🛒</div>
+                <h3>Votre panier est vide</h3>
+                <p>Découvrez notre sélection de vins d'exception</p>
+                <a href="boutique.html" class="btn btn-primary">Parcourir la boutique</a>
+            </div>
+
+            <div id="cartContent" class="cart-content" style="display: none;">
+                <div class="cart-layout">
+                    <div class="cart-items">
+                        <h3>Articles (<span id="itemsCount">0</span>)</h3>
+                        <div id="cartItemsContainer">
+                            <!-- Les articles du panier seront affichés ici -->
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <h3>Récapitulatif</h3>
+                        <div class="summary-line">
+                            <span>Sous-total</span>
+                            <span id="subtotal">0,00 €</span>
+                        </div>
+                        <div class="summary-line">
+                            <span>Livraison</span>
+                            <span id="shipping">Gratuite</span>
+                        </div>
+                        <div class="summary-line total">
+                            <span>Total</span>
+                            <span id="total">0,00 €</span>
+                        </div>
+                        <button class="btn btn-primary btn-checkout">Commander</button>
+                        <button class="btn btn-secondary" onclick="clearCart()">Vider le panier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domaine des Vignes</h3>
+                    <p>Vins d'excellence depuis 1920</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="carte.html">Nos Vignobles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Route des Vignes<br>44000 Nantes<br>France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        // Charger et afficher le panier
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+        });
+
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.getElementById('cartCount');
+            const itemsCount = document.getElementById('itemsCount');
+            const emptyCart = document.getElementById('emptyCart');
+            const cartContent = document.getElementById('cartContent');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            itemsCount.textContent = totalItems;
+
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                cartContent.style.display = 'none';
+            } else {
+                emptyCart.style.display = 'none';
+                cartContent.style.display = 'block';
+
+                cartItemsContainer.innerHTML = '';
+                let subtotal = 0;
+
+                cart.forEach(item => {
+                    const product = getProductById(item.id);
+                    if (product) {
+                        const itemTotal = parseFloat(product.price.replace(',', '.')) * item.quantity;
+                        subtotal += itemTotal;
+                        
+                        const cartItem = createCartItem(product, item.quantity, itemTotal);
+                        cartItemsContainer.innerHTML += cartItem;
+                    }
+                });
+
+                document.getElementById('subtotal').textContent = subtotal.toFixed(2).replace('.', ',') + ' €';
+                document.getElementById('total').textContent = subtotal.toFixed(2).replace('.', ',') + ' €';
+            }
+        }
+
+        function createCartItem(product, quantity, total) {
+            return `
+                <div class="cart-item">
+                    <div class="cart-item-image">${product.icon}</div>
+                    <div class="cart-item-details">
+                        <h4>${product.name}</h4>
+                        <p>${product.type}</p>
+                        <p class="item-price">${product.price}</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button onclick="updateQuantity(${product.id}, -1)" class="qty-btn">-</button>
+                        <span class="qty-display">${quantity}</span>
+                        <button onclick="updateQuantity(${product.id}, 1)" class="qty-btn">+</button>
+                    </div>
+                    <div class="cart-item-total">
+                        ${total.toFixed(2).replace('.', ',')} €
+                    </div>
+                    <button onclick="removeFromCart(${product.id})" class="remove-btn">✕</button>
+                </div>
+            `;
+        }
+
+        function updateQuantity(productId, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(i => i.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+                updateBadges();
+            }
+        }
+
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+            updateBadges();
+        }
+
+        function clearCart() {
+            if (confirm('Êtes-vous sûr de vouloir vider votre panier ?')) {
+                localStorage.setItem('cart', JSON.stringify([]));
+                loadCart();
+                updateBadges();
+            }
+        }
+    </script>
+</body>
+</html>

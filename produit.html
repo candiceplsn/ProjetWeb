@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du produit - Domaine des Vignes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🍇 Domaine des Vignes</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="carte.html">Nos Vignobles</a></li>
+                <li><a href="favoris.html" class="nav-icon" title="Favoris">❤️ <span class="badge" id="favCount">0</span></a></li>
+                <li><a href="panier.html" class="nav-icon" title="Panier">🛒 <span class="badge" id="cartCount">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Accueil</a> / 
+            <a href="boutique.html">Boutique</a> / 
+            <span id="breadcrumbProduct">Produit</span>
+        </div>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-layout">
+                <div class="product-detail-image">
+                    <div class="detail-image-main" id="productImageMain">
+                        🍷
+                    </div>
+                    <button class="fav-btn-large" id="favButtonLarge" onclick="toggleFavoriteDetail()">
+                        🤍
+                    </button>
+                </div>
+
+                <div class="product-detail-info">
+                    <h1 id="productName">Nom du vin</h1>
+                    <p class="product-detail-type" id="productType">Type</p>
+                    
+                    <div class="product-detail-price">
+                        <span class="price-large" id="productPrice">0,00 €</span>
+                    </div>
+
+                    <div class="product-detail-description">
+                        <h3>Description</h3>
+                        <p id="productDescription">Description du produit</p>
+                    </div>
+
+                    <div class="product-detail-specs">
+                        <h3>Caractéristiques</h3>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <strong>Année :</strong>
+                                <span id="productYear">2023</span>
+                            </div>
+                            <div class="spec-item">
+                                <strong>Région :</strong>
+                                <span>Pays de la Loire</span>
+                            </div>
+                            <div class="spec-item">
+                                <strong>Degré :</strong>
+                                <span id="productAlcohol">13,5%</span>
+                            </div>
+                            <div class="spec-item">
+                                <strong>Format :</strong>
+                                <span>75cl</span>
+                            </div>
+                            <div class="spec-item">
+                                <strong>Cépage :</strong>
+                                <span id="productGrape">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <strong>Service :</strong>
+                                <span id="productService">16-18°C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-actions">
+                        <div class="quantity-selector">
+                            <button onclick="changeQuantity(-1)" class="qty-btn">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="99">
+                            <button onclick="changeQuantity(1)" class="qty-btn">+</button>
+                        </div>
+                        <button class="btn btn-primary btn-large" onclick="addToCartFromDetail()">
+                            Ajouter au panier
+                        </button>
+                    </div>
+
+                    <div class="product-detail-notes">
+                        <h3>Notes de dégustation</h3>
+                        <p id="productTastingNotes">Notes de dégustation détaillées...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggestions -->
+            <div class="product-suggestions">
+                <h2>Produits similaires</h2>
+                <div class="products-grid" id="suggestionsGrid">
+                    <!-- Suggestions générées dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domaine des Vignes</h3>
+                    <p>Vins d'excellence depuis 1920</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="carte.html">Nos Vignobles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Route des Vignes<br>44000 Nantes<br>France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>
