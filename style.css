@@ -1270,7 +1270,31 @@ ul {
     margin-bottom: 2rem;
 }
 
-#map {
-    height: 750px;
-    width: 100%;
-}
+/* CARTE */
+#map { height: 600px; width: 100%; border-radius: 12px; background: #f8f9fa; border: 1px solid #ddd; cursor: default; }
+        .map-section { padding: 40px 0; }
+        
+        /* Style pour les informations affichées au clic */
+        #region-info {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            border-left: 5px solid #8b0000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none; /* Caché par défaut */
+        }
+        #region-info h3 { color: #8b0000; margin-top: 0; }
+        
+        .map-legend { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 12px; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 8px; 
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85em; font-weight: bold; color: #444; }
+        .dot { height: 14px; width: 14px; border-radius: 3px; display: inline-block; }
