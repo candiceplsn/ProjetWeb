@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte de France - Domaine des Vignes</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+      <style>
+        #map { height: 600px; width: 100%; border-radius: 12px; background: #f8f9fa; border: 1px solid #ddd; cursor: default; }
+        .map-section { padding: 40px 0; }
+        
+        /* Style pour les informations affichées au clic */
+        #region-info {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            border-left: 5px solid #8b0000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none; /* Caché par défaut */
+        }
+        #region-info h3 { color: #8b0000; margin-top: 0; }
+        
+        .map-legend { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 12px; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 8px; 
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85em; font-weight: bold; color: #444; }
+        .dot { height: 14px; width: 14px; border-radius: 3px; display: inline-block; }
+    </style>
 </head>
 <body>
        <!-- Navigation -->
@@ -37,83 +68,24 @@
         </div>
     </section>
 
-    <!-- Carte Interactive -->
-    <section class="map-section">
+     <section class="map-section">
         <div class="container">
-            <div class="map-container">
-                <div id="map" class="map">
-                    <!-- La carte interactive sera intégrée ici (Leaflet, Google Maps, etc.) -->
-                    <div class="map-placeholder">
-                        <p>🗺️ Carte interactive</p>
-                        <p class="map-info">Intégrez ici votre solution de cartographie (Leaflet, Google Maps, etc.)</p>
-                    </div>
-                </div>
-                
-                <!-- Légende -->
-                <div class="map-legend">
-                    <h3>Nos Parcelles</h3>
-                    <div class="legend-item">
-                        <span class="legend-marker legend-rouge"></span>
-                        <span>Vignoble - Cépages Rouges</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-marker legend-blanc"></span>
-                        <span>Vignoble - Cépages Blancs</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-marker legend-rose"></span>
-                        <span>Vignoble - Cépages Rosés</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-marker legend-cave"></span>
-                        <span>Cave et Domaine</span>
-                    </div>
-                </div>
+            <h2 style="text-align:center; margin-bottom:20px;">Nos Régions Viticoles</h2>
+            <p style="text-align:center; color: #666; margin-bottom:30px;">Survolez une région pour voir son nom, cliquez pour découvrir ses vins.</p>
+            
+            <div id="map"></div>
+            
+            <div id="region-info">
+                <h3 id="info-title">Nom de la Région</h3>
+                <p id="info-content">Sélectionnez une région sur la carte pour voir les détails.</p>
             </div>
 
-            <!-- Informations sur les vignobles -->
-            <div class="vineyards-info">
-                <h3>Nos Parcelles</h3>
-                <div class="vineyards-grid">
-                    <div class="vineyard-card">
-                        <div class="vineyard-icon">🍇</div>
-                        <h4>Parcelle des Coteaux</h4>
-                        <p><strong>Surface:</strong> 15 hectares</p>
-                        <p><strong>Cépages:</strong> Cabernet Sauvignon, Merlot</p>
-                        <p><strong>Exposition:</strong> Sud-Est</p>
-                        <p>Notre parcelle historique, plantée en 1920, produit nos meilleurs rouges.</p>
-                    </div>
-
-                    <div class="vineyard-card">
-                        <div class="vineyard-icon">🥂</div>
-                        <h4>Parcelle de la Vallée</h4>
-                        <p><strong>Surface:</strong> 12 hectares</p>
-                        <p><strong>Cépages:</strong> Chardonnay, Sauvignon Blanc</p>
-                        <p><strong>Exposition:</strong> Sud-Ouest</p>
-                        <p>Terroir argilo-calcaire idéal pour nos vins blancs élégants et minéraux.</p>
-                    </div>
-
-                    <div class="vineyard-card">
-                        <div class="vineyard-icon">🌸</div>
-                        <h4>Parcelle du Plateau</h4>
-                        <p><strong>Surface:</strong> 8 hectares</p>
-                        <p><strong>Cépages:</strong> Grenache, Cinsault</p>
-                        <p><strong>Exposition:</strong> Sud</p>
-                        <p>Exposition optimale pour des rosés fruités et rafraîchissants.</p>
-                    </div>
-
-                    <div class="vineyard-card">
-                        <div class="vineyard-icon">🏛️</div>
-                        <h4>Le Domaine</h4>
-                        <p><strong>Surface:</strong> 5 hectares</p>
-                        <p><strong>Installations:</strong> Cave, Chai, Boutique</p>
-                        <p><strong>Année:</strong> Construit en 1920</p>
-                        <p>Notre domaine historique où sont vinifiés et élevés tous nos vins.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="map-legend" id="js-legend"></div>
         </div>
     </section>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="cart.js"></script>
+    <script src="map.js"></script>
 
     <!-- Section Visite -->
     <section class="visit-section">
