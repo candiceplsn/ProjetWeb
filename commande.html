@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande - Ma Cave</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo_MaCave_without_title.png" alt="logo" class="icon-logo">
+                <h1>Ma Cave</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="carte.html">La Carte de France</a></li>
+                <li class="nav-icons"><a href="favoris.html" class="nav-icon" title="Favoris">
+                        <img src="images/favori.png" alt="Favoris" class="icon-favori">
+                        <span class="badge" id="favCount">0</span>
+                    </a></li>
+                <li class="nav-icons"><a href="panier.html" class="nav-icon" title="Panier">
+                        <img src="images/panier.png" alt="Panier" class="icon-panier">
+                        <span class="badge" id="cartCount">0</span>
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Finaliser ma commande</h2>
+            <p>Plus que quelques étapes avant de recevoir vos vins</p>
+        </div>
+    </section>
+
+    <!-- Étapes de commande -->
+    <section class="checkout-section">
+        <div class="container">
+            <!-- Progress Bar -->
+            <div class="checkout-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Panier</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step active" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Livraison</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Paiement</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="checkout-layout">
+                <!-- Formulaire de commande -->
+                <div class="checkout-form">
+                    <!-- Étape 1: Récapitulatif -->
+                    <div class="checkout-step" id="step-recap">
+                        <h3>📦 Récapitulatif de votre commande</h3>
+                        <div id="orderRecap" class="order-recap">
+                            <!-- Items du panier affichés ici -->
+                        </div>
+                    </div>
+
+                    <!-- Étape 2: Informations de livraison -->
+                    <div class="checkout-step" id="step-delivery">
+                        <h3>🚚 Informations de livraison</h3>
+                        <form id="deliveryForm" class="delivery-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Prénom *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Nom *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Téléphone *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Adresse *</label>
+                                <input type="text" id="address" name="address" placeholder="Numéro et rue" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="postalCode">Code postal *</label>
+                                    <input type="text" id="postalCode" name="postalCode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Ville *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Pays *</label>
+                                <select id="country" name="country" required>
+                                    <option value="France">France</option>
+                                    <option value="Belgique">Belgique</option>
+                                    <option value="Suisse">Suisse</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deliveryNotes">Instructions de livraison (optionnel)</label>
+                                <textarea id="deliveryNotes" name="deliveryNotes" rows="3" placeholder="Code d'accès, étage, etc."></textarea>
+                            </div>
+
+                            <div class="delivery-options">
+                                <h4>Mode de livraison</h4>
+                                <label class="radio-option">
+                                    <input type="radio" name="deliveryMethod" value="standard" checked>
+                                    <div class="option-content">
+                                        <div class="option-title">Livraison Standard</div>
+                                        <div class="option-desc">3-5 jours ouvrés</div>
+                                    </div>
+                                    <div class="option-price">Gratuite</div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="deliveryMethod" value="express">
+                                    <div class="option-content">
+                                        <div class="option-title">Livraison Express</div>
+                                        <div class="option-desc">1-2 jours ouvrés</div>
+                                    </div>
+                                    <div class="option-price">9,90 €</div>
+                                </label>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="goToPayment()">
+                                Continuer vers le paiement
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Étape 3: Paiement -->
+                    <div class="checkout-step" id="step-payment" style="display: none;">
+                        <h3>💳 Paiement</h3>
+                        <div class="payment-methods">
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <div class="option-content">
+                                    <div class="option-title">Carte bancaire</div>
+                                    <div class="option-desc">Visa, Mastercard, American Express</div>
+                                </div>
+                                <span class="payment-icon">💳</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="paypal">
+                                <div class="option-content">
+                                    <div class="option-title">PayPal</div>
+                                    <div class="option-desc">Paiement sécurisé via PayPal</div>
+                                </div>
+                                <span class="payment-icon">🅿️</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="transfer">
+                                <div class="option-content">
+                                    <div class="option-title">Virement bancaire</div>
+                                    <div class="option-desc">Commande traitée après réception</div>
+                                </div>
+                                <span class="payment-icon">🏦</span>
+                            </label>
+                        </div>
+
+                        <div id="cardPaymentForm" class="payment-form">
+                            <div class="form-group">
+                                <label for="cardNumber">Numéro de carte *</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Date d'expiration *</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCVV">CVV *</label>
+                                    <input type="text" id="cardCVV" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Nom sur la carte *</label>
+                                <input type="text" id="cardName" placeholder="JEAN DUPONT">
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="acceptTerms" required>
+                                <span>J'accepte les <a href="#" target="_blank">conditions générales de vente</a> *</span>
+                            </label>
+                        </div>
+
+                        <div class="checkout-actions">
+                            <button type="button" class="btn btn-secondary" onclick="goToDelivery()">
+                                Retour
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="validateOrder()">
+                                Valider ma commande
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 4: Confirmation -->
+                    <div class="checkout-step" id="step-confirmation" style="display: none;">
+                        <div class="confirmation-content">
+                            <div class="confirmation-icon">✅</div>
+                            <h3>Commande confirmée !</h3>
+                            <p class="confirmation-message">
+                                Merci pour votre commande ! Un email de confirmation vous a été envoyé.
+                            </p>
+                            <div class="order-number">
+                                <strong>Numéro de commande :</strong> <span id="orderNumber"></span>
+                            </div>
+                            <div class="confirmation-details">
+                                <p>Vous recevrez vos vins dans <strong>3-5 jours ouvrés</strong>.</p>
+                                <p>Un email de suivi vous sera envoyé dès l'expédition de votre commande.</p>
+                            </div>
+                            <div class="confirmation-actions">
+                                <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+                                <a href="boutique.html" class="btn btn-secondary">Continuer mes achats</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résumé de commande (sidebar) -->
+                <div class="order-summary">
+                    <h3>Résumé</h3>
+                    <div id="summaryItems" class="summary-items">
+                        <!-- Items affichés ici -->
+                    </div>
+                    <div class="summary-totals">
+                        <div class="summary-line">
+                            <span>Sous-total</span>
+                            <span id="summarySubtotal">0,00 €</span>
+                        </div>
+                        <div class="summary-line">
+                            <span>Livraison</span>
+                            <span id="summaryShipping">Gratuite</span>
+                        </div>
+                        <div class="summary-line total">
+                            <span>Total</span>
+                            <span id="summaryTotal">0,00 €</span>
+                        </div>
+                    </div>
+                    <div class="secure-payment">
+                        <div class="secure-icon">🔒</div>
+                        <p>Paiement 100% sécurisé</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domaine des Vignes</h3>
+                    <p>Vins d'excellence depuis 1920</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="carte.html">Nos Vignobles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Route des Vignes<br>44000 Nantes<br>France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
