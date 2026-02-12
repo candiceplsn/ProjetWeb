@@ -6,36 +6,7 @@
     <title>Carte de France - Domaine des Vignes</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-      <style>
-        #map { height: 600px; width: 100%; border-radius: 12px; background: #f8f9fa; border: 1px solid #ddd; cursor: default; }
-        .map-section { padding: 40px 0; }
-        
-        /* Style pour les informations affichées au clic */
-        #region-info {
-            margin-top: 30px;
-            padding: 25px;
-            background: #fff;
-            border-radius: 12px;
-            border-left: 5px solid #8b0000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: none; /* Caché par défaut */
-        }
-        #region-info h3 { color: #8b0000; margin-top: 0; }
-        
-        .map-legend { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-            gap: 12px; 
-            padding: 20px; 
-            background: white; 
-            border-radius: 8px; 
-            margin-top: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85em; font-weight: bold; color: #444; }
-        .dot { height: 14px; width: 14px; border-radius: 3px; display: inline-block; }
-    </style>
+
 </head>
 <body>
        <!-- Navigation -->
@@ -51,7 +22,7 @@
                 <li><a href="carte.html"  class="active">La Carte de France</a></li>
                 <li class="nav-icons"><a href="favoris.html" class="nav-icon" title="Favoris">
                         <img src="images/favori.png" alt="Favoris" class="icon-favori">
-                        <span class="badge" id="favCount">0</span>
+                        <span class="badge" id="favCount"> 0</span>
                     </a></li>
                 <li class="nav-icons"><a href="panier.html" class="nav-icon" title="Panier">
                         <img src="images/panier.png" alt="Panier" class="icon-panier">

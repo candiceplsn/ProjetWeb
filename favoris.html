@@ -20,11 +20,11 @@
                 <li><a href="carte.html">La Carte de France</a></li>
                 <li class="nav-icons" ><a href="favoris.html" class="nav-icon active" title="Favoris">
                         <img src="images/favori.png" alt="Favoris" class="icon-favori">
-                        <span class="badge" id="favCount">0</span>
+                        <span class="badge" id="favCount"> 0</span>
                     </a></li>
                 <li class="nav-icons"><a href="panier.html" class="nav-icon" title="Panier">
                         <img src="images/panier.png" alt="Panier" class="icon-panier">
-                        <span class="badge" id="cartCount">0</span>
+                        <span class="badge" id="cartCount"> 0</span>
                     </a></li>
             </ul>
         </div>
@@ -122,7 +122,9 @@
         function createFavoriteCard(product) {
             return `
                 <div class="product-card" data-id="${product.id}">
-                    <button class="fav-btn active" onclick="toggleFavorite(${product.id})">❤️</button>
+                    <button class="fav-btn active" onclick="toggleFavorite(${product.id})">
+                         <img src="images/icone-coeur-rouge.png" alt="Coeur rouge">
+                    </button>
                     <a href="produit.html?id=${product.id}" class="product-link">
                         <div class="product-image">${product.icon}</div>
                         <div class="product-info">
