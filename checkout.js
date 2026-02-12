@@ -192,9 +192,6 @@ function validateOrder() {
     currentStep = 4;
     updateProgressBar();
     window.scrollTo(0, 0);
-
-    // Effet confetti (optionnel)
-    showConfetti();
 }
 
 // Écouter les changements de mode de livraison
@@ -223,24 +220,6 @@ function setupPaymentMethodListener() {
             }
         });
     });
-}
-
-// Animation confetti simple
-function showConfetti() {
-    // Animation simple avec émojis
-    const confettiEmojis = ['🍷', '🍾', '🥂', '🎉', '✨'];
-    for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
-            confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.animationDelay = Math.random() * 0.5 + 's';
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => confetti.remove(), 3000);
-        }, i * 50);
-    }
 }
 
 // Formatage automatique du numéro de carte
