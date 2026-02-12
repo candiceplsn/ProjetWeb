@@ -29,7 +29,15 @@ function loadProductDetail(productId) {
     
     // Remplir les informations du produit
     document.getElementById('breadcrumbProduct').textContent = product.name;
-    document.getElementById('productImageMain').textContent = product.icon;
+    //Création de l'image
+    const img = document.createElement("img");
+    img.src = product.icon;
+    img.classList.add("img-vins-detail");
+
+    const productImageMain = document.getElementById('productImageMain');
+    productImageMain.innerHTML = "";
+    productImageMain.appendChild(img);
+
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productType').textContent = product.type;
     document.getElementById('productPrice').textContent = product.price + ' €';
@@ -114,7 +122,7 @@ function loadSuggestions(currentProductId) {
             <div class="product-card" data-id="${product.id}">
                 <button class="fav-btn" onclick="toggleFavorite(${product.id})"></button>
                 <a href="produit.html?id=${product.id}" class="product-link">
-                    <div class="product-image">${product.icon}</div>
+                    <div class="product-image"><img src="${product.icon}" alt="${product.type}" class="img-vin-suggestion"></div>
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-type">${product.type}</p>

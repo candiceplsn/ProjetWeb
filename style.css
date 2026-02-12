@@ -551,6 +551,29 @@ ul {
 .img-vins {
     height: 220px;
     width: 420px;
+    object-fit: cover;
+    object-position: center; 
+    aspect-ratio: 1/1; 
+    display: block;
+    margin: 0 auto; 
+}
+.img-vin-suggestion {
+      height: 220px;
+    width: 420px;
+    object-fit: cover;
+    object-position: center; 
+    aspect-ratio: 1/1; 
+    display: block;
+    margin: 0 auto; 
+}
+.img-vins-detail {
+    height: 500px;
+    width: 600px;
+    object-fit: cover; 
+    object-position: center; 
+    aspect-ratio: 1/1;
+    display: block;
+    margin: 0 auto; 
 }
 
 /* ========================================
@@ -1076,6 +1099,16 @@ ul {
     width: 120px;
     height: 100px;
     justify-self: center
+}
+
+.img-vin-panier {
+      height: 50px;
+    width: 100px;
+    object-fit: cover;
+    object-position: center; 
+    aspect-ratio: 1/1; 
+    display: block;
+    margin: 0 auto; 
 }
 
 /* ========================================

@@ -161,7 +161,7 @@
         function createCartItem(product, quantity, total) {
             return `
                 <div class="cart-item">
-                    <div class="cart-item-image">${product.icon}</div>
+                    <div class="cart-item-image"><img src="${product.icon}" alt="${product.type}" class="img-vin-panier"></div>
                     <div class="cart-item-details">
                         <h4>${product.name}</h4>
                         <p>${product.type}</p>
