@@ -122,7 +122,9 @@
         function createFavoriteCard(product) {
             return `
                 <div class="product-card" data-id="${product.id}">
-                    <button class="fav-btn active" onclick="toggleFavorite(${product.id})">❤️</button>
+                    <button class="fav-btn active" onclick="toggleFavorite(${product.id})">
+                         <img src="images/icone-coeur-rouge.png" alt="Coeur rouge">
+                    </button>
                     <a href="produit.html?id=${product.id}" class="product-link">
                         <div class="product-image">${product.icon}</div>
                         <div class="product-info">
