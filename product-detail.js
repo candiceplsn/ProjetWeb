@@ -112,7 +112,7 @@ function loadSuggestions(currentProductId) {
     suggestions.forEach(product => {
         const productCard = `
             <div class="product-card" data-id="${product.id}">
-                <button class="fav-btn" onclick="toggleFavorite(${product.id})">🤍</button>
+                <button class="fav-btn" onclick="toggleFavorite(${product.id})"></button>
                 <a href="produit.html?id=${product.id}" class="product-link">
                     <div class="product-image">${product.icon}</div>
                     <div class="product-info">

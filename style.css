@@ -462,10 +462,6 @@ ul {
 }
 
 .product-link {
-    /* display: block;
-    text-decoration: none;
-    color: inherit;
-      flex: 1; */
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -549,8 +545,12 @@ ul {
 
 .btn-add-cart {
     width: 100%;
-    /* margin-top: 0.5rem; */
     margin-top: auto;
+}
+
+.img-vins {
+    height: 220px;
+    width: 420px;
 }
 
 /* ========================================
@@ -559,7 +559,7 @@ ul {
 
 .map-section {
     padding: 3rem 0;
-    background: var(--white);
+    background: var(--bg-light);
 }
 
 .map-container {
@@ -740,7 +740,7 @@ ul {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1277,7 +1277,8 @@ ul {
 
 /* CARTE */
 #map { height: 600px; width: 100%; border-radius: 12px; background: #f8f9fa; border: 1px solid #ddd; cursor: default; }
-        .map-section { padding: 40px 0; }
+        .map-section { 
+            padding: 40px 0; }
         
         /* Style pour les informations affichées au clic */
         #region-info {
