@@ -47,12 +47,12 @@ function loadProductDetail(productId) {
 function updateFavoriteButtonDetail() {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favButton = document.getElementById('favButtonLarge');
-    
+   
     if (favorites.includes(currentProductId)) {
-        favButton.textContent = '❤️';
+        favButton.innerHTML = '<img src="images/icone-coeur-rouge.png" alt="Favori ajouté">';
         favButton.classList.add('active');
     } else {
-        favButton.textContent = '🤍';
+        favButton.innerHTML = '<img src="images/icone-coeur-blanc.png" alt="Ajouter aux favoris">';
         favButton.classList.remove('active');
     }
 }

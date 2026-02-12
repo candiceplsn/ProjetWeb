@@ -299,6 +299,13 @@ ul {
 .value-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    align-items: center;
+}
+
+.icon-valeur{
+        max-width: 100%;
+    height: auto;
+    display: inline-block;
 }
 
 .value-card h3 {

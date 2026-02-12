@@ -122,11 +122,9 @@ function updateFavoriteButtons() {
             const productId = parseInt(productCard.dataset.id);
             if (favorites.includes(productId)) {
                 btn.innerHTML = '<img src="images/icone-coeur-rouge.png" alt="Favori ajouté">';
-                /*btn.textContent = '❤️';*/
                 btn.classList.add('active');
             } else {
                 btn.innerHTML = '<img src="images/icone-coeur-blanc.png" alt="Ajouter aux favoris">';
-                /*btn.textContent = '🤍';*/
                 btn.classList.remove('active');
             }
         }
