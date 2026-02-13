@@ -41,7 +41,6 @@
     <!-- Étapes de commande -->
     <section class="checkout-section">
         <div class="container">
-            <!-- Progress Bar -->
             <div class="checkout-progress">
                 <div class="progress-step active" data-step="1">
                     <div class="step-number">1</div>
@@ -69,15 +68,14 @@
                 <div class="checkout-form">
                     <!-- Étape 1: Récapitulatif -->
                     <div class="checkout-step" id="step-recap">
-                        <h3>📦 Récapitulatif de votre commande</h3>
+                        <h3>Récapitulatif de votre commande</h3>
                         <div id="orderRecap" class="order-recap">
-                            <!-- Items du panier affichés ici -->
                         </div>
                     </div>
 
                     <!-- Étape 2: Informations de livraison -->
                     <div class="checkout-step" id="step-delivery">
-                        <h3>🚚 Informations de livraison</h3>
+                        <h3>Informations de livraison</h3>
                         <form id="deliveryForm" class="delivery-form">
                             <div class="form-row">
                                 <div class="form-group">
@@ -159,7 +157,7 @@
 
                     <!-- Étape 3: Paiement -->
                     <div class="checkout-step" id="step-payment" style="display: none;">
-                        <h3>💳 Paiement</h3>
+                        <h3>Paiement</h3>
                         <div class="payment-methods">
                             <label class="radio-option">
                                 <input type="radio" name="paymentMethod" value="card" checked>
@@ -167,7 +165,6 @@
                                     <div class="option-title">Carte bancaire</div>
                                     <div class="option-desc">Visa, Mastercard, American Express</div>
                                 </div>
-                                <span class="payment-icon">💳</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="paymentMethod" value="paypal">
@@ -175,7 +172,6 @@
                                     <div class="option-title">PayPal</div>
                                     <div class="option-desc">Paiement sécurisé via PayPal</div>
                                 </div>
-                                <span class="payment-icon">🅿️</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="paymentMethod" value="transfer">
@@ -183,7 +179,6 @@
                                     <div class="option-title">Virement bancaire</div>
                                     <div class="option-desc">Commande traitée après réception</div>
                                 </div>
-                                <span class="payment-icon">🏦</span>
                             </label>
                         </div>
 
@@ -228,7 +223,9 @@
                     <!-- Étape 4: Confirmation -->
                     <div class="checkout-step" id="step-confirmation" style="display: none;">
                         <div class="confirmation-content">
-                            <div class="confirmation-icon">✅</div>
+                            <div class="confirmation-icon">
+                                <img src="images/valide.png" alt="Validation" class="icon-valeur">
+                                </div>
                             <h3>Commande confirmée !</h3>
                             <p class="confirmation-message">
                                 Merci pour votre commande ! Un email de confirmation vous a été envoyé.
@@ -248,11 +245,10 @@
                     </div>
                 </div>
 
-                <!-- Résumé de commande (sidebar) -->
+                <!-- Résumé de commande -->
                 <div class="order-summary">
                     <h3>Résumé</h3>
                     <div id="summaryItems" class="summary-items">
-                        <!-- Items affichés ici -->
                     </div>
                     <div class="summary-totals">
                         <div class="summary-line">
@@ -269,7 +265,9 @@
                         </div>
                     </div>
                     <div class="secure-payment">
-                        <div class="secure-icon">🔒</div>
+                        <div class="secure-icon">
+                            <img src="images/cadenas.png" alt="Cadenas" class="icon-valeur">
+                        </div>
                         <p>Paiement 100% sécurisé</p>
                     </div>
                 </div>
@@ -277,14 +275,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
+   <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Domaine des Vignes</h3>
-                    <p>Vins d'excellence depuis 1920</p>
-                </div>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
@@ -295,15 +289,24 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
+                    <p>Tél: 02 43 70 65 94<br>Email: macave@gmail.com</p>
+                    
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Horaires</h4>
+                    <p>Lun-Ven: 9h-18h<br>Samedi: 14h-18h</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Adresse</h4>
                     <p>Route des Vignes<br>44000 Nantes<br>France</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+                <p>&copy; 2026 Ma Cave. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-
     <script src="cart.js"></script>
     <script src="checkout.js"></script>
 </body>

@@ -1,13 +1,13 @@
-// cart.js - Gestion du panier et des favoris avec localStorage
+//Gestion du panier et des favoris
 
-// Base de données de produits (à remplacer par une vraie base de données)
+// Base de données de produits
 const productsDatabase = {
     1: {
         id: 1,
         name: "Château Rouge 2022",
         type: "Vin Rouge",
         price: "25,00",
-        icon: "🍷",
+        icon: "/images/vin-rouge.jpg",
         description: "Un rouge charpenté aux arômes de fruits noirs",
         year: 2022,
         alcohol: "13,5%",
@@ -20,7 +20,7 @@ const productsDatabase = {
         name: "Domaine Blanc 2023",
         type: "Vin Blanc",
         price: "18,00",
-        icon: "🥂",
+        icon: "/images/vin-blanc.jpg",
         description: "Fraîcheur et élégance pour ce blanc sec",
         year: 2023,
         alcohol: "12,5%",
@@ -33,7 +33,7 @@ const productsDatabase = {
         name: "Rosé d'Été 2023",
         type: "Vin Rosé",
         price: "15,00",
-        icon: "🌸",
+        icon: "/images/rose.webp",
         description: "Léger et fruité, parfait pour l'été",
         year: 2023,
         alcohol: "12%",
@@ -46,7 +46,7 @@ const productsDatabase = {
         name: "Grand Cru 2020",
         type: "Vin Rouge",
         price: "45,00",
-        icon: "🍷",
+        icon: "/images/vin-rouge.jpg",
         description: "Notre cuvée prestige, élevée en fût de chêne",
         year: 2020,
         alcohol: "14%",
@@ -59,7 +59,7 @@ const productsDatabase = {
         name: "Cuvée Prestige Blanc 2021",
         type: "Vin Blanc",
         price: "32,00",
-        icon: "🥂",
+        icon: "/images/vin-blanc.jpg",
         description: "Complexe et raffiné, idéal pour les grandes occasions",
         year: 2021,
         alcohol: "13%",
@@ -72,7 +72,7 @@ const productsDatabase = {
         name: "Terroir Rouge 2022",
         type: "Vin Rouge",
         price: "22,00",
-        icon: "🍷",
+        icon: "/images/vin-rouge.jpg",
         description: "Expression pure de notre terroir",
         year: 2022,
         alcohol: "13%",
@@ -82,24 +82,19 @@ const productsDatabase = {
     }
 };
 
-// Récupérer un produit par son ID
+// Récupérer un produit par son id
 function getProductById(id) {
     return productsDatabase[id] || null;
 }
 
-// ========================================
 // GESTION DES FAVORIS
-// ========================================
-
 function toggleFavorite(productId) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const index = favorites.indexOf(productId);
     
     if (index > -1) {
-        // Retirer des favoris
         favorites.splice(index, 1);
     } else {
-        // Ajouter aux favoris
         favorites.push(productId);
     }
     
@@ -107,7 +102,6 @@ function toggleFavorite(productId) {
     updateBadges();
     updateFavoriteButtons();
     
-    // Recharger la page favoris si on y est
     if (window.location.pathname.includes('favoris.html')) {
         loadFavorites();
     }
@@ -122,21 +116,16 @@ function updateFavoriteButtons() {
             const productId = parseInt(productCard.dataset.id);
             if (favorites.includes(productId)) {
                 btn.innerHTML = '<img src="images/icone-coeur-rouge.png" alt="Favori ajouté">';
-                /*btn.textContent = '❤️';*/
                 btn.classList.add('active');
             } else {
                 btn.innerHTML = '<img src="images/icone-coeur-blanc.png" alt="Ajouter aux favoris">';
-                /*btn.textContent = '🤍';*/
                 btn.classList.remove('active');
             }
         }
     });
 }
 
-// ========================================
 // GESTION DU PANIER
-// ========================================
-
 function addToCart(productId) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingItem = cart.find(item => item.id === productId);
@@ -150,12 +139,11 @@ function addToCart(productId) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateBadges();
     
-    // Animation de confirmation
+    // Confirmation d'achat
     showNotification('Produit ajouté au panier !');
 }
 
 function showNotification(message) {
-    // Créer une notification temporaire
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
@@ -171,12 +159,9 @@ function showNotification(message) {
     }, 2000);
 }
 
-// ========================================
 // MISE À JOUR DES BADGES
-// ========================================
 
 function updateBadges() {
-    // Mettre à jour le badge des favoris
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favBadges = document.querySelectorAll('#favCount');
     favBadges.forEach(badge => {
@@ -184,7 +169,6 @@ function updateBadges() {
         badge.style.display = favorites.length > 0 ? 'inline-block' : 'none';
     });
     
-    // Mettre à jour le badge du panier
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     const cartBadges = document.querySelectorAll('#cartCount');
@@ -194,9 +178,7 @@ function updateBadges() {
     });
 }
 
-// ========================================
 // INITIALISATION
-// ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
     updateBadges();

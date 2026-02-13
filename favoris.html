@@ -51,20 +51,15 @@
 
             <div id="favoritesContent" class="cart-content" style="display: none;">
                 <div class="products-grid" id="favoritesGrid">
-                    <!-- Les favoris seront affichés ici dynamiquement -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+  <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Domaine des Vignes</h3>
-                    <p>Vins d'excellence depuis 1920</p>
-                </div>
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
@@ -75,18 +70,27 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
+                    <p>Tél: 02 43 70 65 94<br>Email: macave@gmail.com</p>
+                    
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Horaires</h4>
+                    <p>Lun-Ven: 9h-18h<br>Samedi: 14h-18h</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Adresse</h4>
                     <p>Route des Vignes<br>44000 Nantes<br>France</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Domaine des Vignes. Tous droits réservés.</p>
+                <p>&copy; 2026 Ma Cave. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <script src="cart.js"></script>
     <script>
-        // Charger et afficher les favoris
         document.addEventListener('DOMContentLoaded', function() {
             loadFavorites();
         });
@@ -126,7 +130,7 @@
                          <img src="images/icone-coeur-rouge.png" alt="Coeur rouge">
                     </button>
                     <a href="produit.html?id=${product.id}" class="product-link">
-                        <div class="product-image">${product.icon}</div>
+                        <div class="product-image"><img src="${product.icon}" alt="${product.type}" class="img-vin-suggestion"></div>
                         <div class="product-info">
                             <h3 class="product-name">${product.name}</h3>
                             <p class="product-type">${product.type}</p>

@@ -1,9 +1,8 @@
-// product-detail.js - Gestion de la page détail produit
+//Gestion de la page détail produit
 
 let currentProductId = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Récupérer l'ID du produit depuis l'URL
     const urlParams = new URLSearchParams(window.location.search);
     currentProductId = parseInt(urlParams.get('id'));
     
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadProductDetail(currentProductId);
         loadSuggestions(currentProductId);
     } else {
-        // Rediriger vers la boutique si pas d'ID
         window.location.href = 'boutique.html';
     }
 });
@@ -24,12 +22,18 @@ function loadProductDetail(productId) {
         return;
     }
     
-    // Mettre à jour le titre de la page
     document.title = `${product.name} - Domaine des Vignes`;
     
-    // Remplir les informations du produit
+    // Infos du produit
     document.getElementById('breadcrumbProduct').textContent = product.name;
-    document.getElementById('productImageMain').textContent = product.icon;
+    const img = document.createElement("img");
+    img.src = product.icon;
+    img.classList.add("img-vins-detail");
+
+    const productImageMain = document.getElementById('productImageMain');
+    productImageMain.innerHTML = "";
+    productImageMain.appendChild(img);
+
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productType').textContent = product.type;
     document.getElementById('productPrice').textContent = product.price + ' €';
@@ -40,19 +44,18 @@ function loadProductDetail(productId) {
     document.getElementById('productService').textContent = product.service;
     document.getElementById('productTastingNotes').textContent = product.tastingNotes;
     
-    // Mettre à jour le bouton favori
     updateFavoriteButtonDetail();
 }
 
 function updateFavoriteButtonDetail() {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favButton = document.getElementById('favButtonLarge');
-    
+   
     if (favorites.includes(currentProductId)) {
-        favButton.textContent = '❤️';
+        favButton.innerHTML = '<img src="images/icone-coeur-rouge.png" alt="Favori ajouté">';
         favButton.classList.add('active');
     } else {
-        favButton.textContent = '🤍';
+        favButton.innerHTML = '<img src="images/icone-coeur-blanc.png" alt="Ajouter aux favoris">';
         favButton.classList.remove('active');
     }
 }
@@ -96,7 +99,7 @@ function loadSuggestions(currentProductId) {
     
     if (!currentProduct || !suggestionsGrid) return;
     
-    // Trouver des produits similaires (même type)
+    // Trouve des produits du même type
     const allProducts = Object.values(productsDatabase);
     const suggestions = allProducts
         .filter(p => p.id !== currentProductId && p.type === currentProduct.type)
@@ -112,9 +115,9 @@ function loadSuggestions(currentProductId) {
     suggestions.forEach(product => {
         const productCard = `
             <div class="product-card" data-id="${product.id}">
-                <button class="fav-btn" onclick="toggleFavorite(${product.id})">🤍</button>
+                <button class="fav-btn" onclick="toggleFavorite(${product.id})"></button>
                 <a href="produit.html?id=${product.id}" class="product-link">
-                    <div class="product-image">${product.icon}</div>
+                    <div class="product-image"><img src="${product.icon}" alt="${product.type}" class="img-vin-suggestion"></div>
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-type">${product.type}</p>
@@ -130,6 +133,5 @@ function loadSuggestions(currentProductId) {
         suggestionsGrid.innerHTML += productCard;
     });
     
-    // Mettre à jour les boutons favoris
     updateFavoriteButtons();
 }
