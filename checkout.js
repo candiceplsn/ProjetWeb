@@ -39,7 +39,7 @@ function loadOrderSummary() {
             // Récapitulatif détaillé
             const recapItem = `
                 <div class="recap-item">
-                    <div class="recap-icon">${product.icon}</div>
+                <div class="recap-icon"><img src="${product.icon}" alt="${product.type}" class="img-vin-panier"></div>
                     <div class="recap-info">
                         <div class="recap-name">${product.name}</div>
                         <div class="recap-details">Quantité: ${item.quantity} × ${product.price} €</div>
