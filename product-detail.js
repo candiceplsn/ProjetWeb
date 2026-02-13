@@ -1,9 +1,8 @@
-// product-detail.js - Gestion de la page détail produit
+//Gestion de la page détail produit
 
 let currentProductId = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Récupérer l'ID du produit depuis l'URL
     const urlParams = new URLSearchParams(window.location.search);
     currentProductId = parseInt(urlParams.get('id'));
     
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadProductDetail(currentProductId);
         loadSuggestions(currentProductId);
     } else {
-        // Rediriger vers la boutique si pas d'ID
         window.location.href = 'boutique.html';
     }
 });
@@ -24,12 +22,10 @@ function loadProductDetail(productId) {
         return;
     }
     
-    // Mettre à jour le titre de la page
     document.title = `${product.name} - Domaine des Vignes`;
     
-    // Remplir les informations du produit
+    // Infos du produit
     document.getElementById('breadcrumbProduct').textContent = product.name;
-    //Création de l'image
     const img = document.createElement("img");
     img.src = product.icon;
     img.classList.add("img-vins-detail");
@@ -48,7 +44,6 @@ function loadProductDetail(productId) {
     document.getElementById('productService').textContent = product.service;
     document.getElementById('productTastingNotes').textContent = product.tastingNotes;
     
-    // Mettre à jour le bouton favori
     updateFavoriteButtonDetail();
 }
 
@@ -104,7 +99,7 @@ function loadSuggestions(currentProductId) {
     
     if (!currentProduct || !suggestionsGrid) return;
     
-    // Trouver des produits similaires (même type)
+    // Trouve des produits du même type
     const allProducts = Object.values(productsDatabase);
     const suggestions = allProducts
         .filter(p => p.id !== currentProductId && p.type === currentProduct.type)
@@ -138,6 +133,5 @@ function loadSuggestions(currentProductId) {
         suggestionsGrid.innerHTML += productCard;
     });
     
-    // Mettre à jour les boutons favoris
     updateFavoriteButtons();
 }

@@ -1,6 +1,4 @@
-// shop.js - Gestion des filtres et du tri de la boutique
-
-// Tu pourras compléter ce fichier pour ajouter la logique des filtres et du tri
+//Gestion des filtres et du tri de la boutique
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -11,12 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsGrid = document.getElementById('productsGrid');
     const productCount = document.getElementById('productCount');
 
-    // Fonction pour filtrer les produits
     function filterProducts() {
         const products = document.querySelectorAll('.product-card');
         let visibleCount = 0;
 
-        // Récupérer les filtres actifs
+        // Récupération des filtres actifs
         const activeFilters = {
             type: Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value),
             prix: Array.from(document.querySelectorAll('input[name="prix"]:checked')).map(cb => cb.value),
@@ -26,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         products.forEach(product => {
             let shouldShow = true;
 
-            // Filtrer par type
             if (activeFilters.type.length > 0) {
                 const productType = product.dataset.type;
                 if (!activeFilters.type.includes(productType)) {
@@ -34,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Filtrer par prix
+            // Filtrage par prix
             if (activeFilters.prix.length > 0 && shouldShow) {
                 const productPrice = parseFloat(product.dataset.prix);
                 let matchesPrice = false;
@@ -49,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!matchesPrice) shouldShow = false;
             }
 
-            // Filtrer par année
+            // Filtrage par année
             if (activeFilters.annee.length > 0 && shouldShow) {
                 const productYear = product.dataset.annee;
                 if (!activeFilters.annee.includes(productYear)) {
@@ -65,8 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 product.style.display = 'none';
             }
         });
-
-        // Mettre à jour le compteur
         productCount.textContent = visibleCount;
     }
 
@@ -94,13 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Réorganiser les produits dans le DOM
         products.forEach(product => {
             productsGrid.appendChild(product);
         });
     }
 
-    // Réinitialiser les filtres
+    // Réinitialisation des filtres
     function resetFilters() {
         filterCheckboxes.forEach(checkbox => {
             checkbox.checked = false;
@@ -109,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         filterProducts();
     }
 
-    // Event listeners
     filterCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', filterProducts);
     });
@@ -117,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
     resetButton.addEventListener('click', resetFilters);
     sortSelect.addEventListener('change', sortProducts);
 
-    // Initialisation du compteur
     const initialCount = document.querySelectorAll('.product-card').length;
     productCount.textContent = initialCount;
 });

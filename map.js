@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Équilibrage du centre : on remonte un peu vers le nord par rapport au test précédent
-    // mais on reste assez bas pour garder la Corse.
     const centreVue = [46.20, 2.20]; 
     
     const map = L.map('map', {
         center: centreVue,
-        zoom: 5.5, // Zoom légèrement réduit pour garantir que le haut et le bas rentrent
+        zoom: 5.5,
         zoomControl: false,
         dragging: false,
         scrollWheelZoom: false,
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         touchZoom: false,
         boxZoom: false,
         keyboard: false,
-        // Empêche la carte de rebondir ou de bouger
         maxBoundsViscosity: 1.0 
     });
 
@@ -22,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    // 2. Les 14 régions avec les couleurs de votre image
+    // 14 régions et leurs descriptions
     const regionsViticoles = [
         { name: "Languedoc", coords: [43.40, 3.20], color: "#611C35", radius: 55000, desc: `Sur la pointe sud de l'hexagone, autour du golfe du Lion, s'étire un vignoble qui est en volume le premier de France : oui, nous parlons bien du Languedoc, avec ses 200 000 hectares de vigne plantée sous un climat hautement favorable. Beaucoup de vins de table, certes, mais aussi de nombreux vins de qualité, dont les AOC rassemblent 36 000 hectares, soit tout de même une Bourgogne et demie ! Le Languedoc excelle notamment dans les muscats (de Frontignan, de Mireval, de Lunel et de Saint-Jean-de-Minervois), ces vins doux naturels obtenus par mutage. On sait moins souvent qu'il abrite aussi le doyen mondial des vins effervescents : la Blanquette de Limoux, élaborée dès 1531 par les moines de l'Abbaye de St-Hilaire. Depuis les années 1980, c'est aussi l'un des hauts lieux du retour en grâce des vins de cépage, autour du grenache, du mourvèdre et de la syrah. Autant de raisons d'étancher sa soif et sa curiosité en découvrant ou redécouvrant ce vignoble des plus attachants !` },
         { name: "Roussillon", coords: [42.75, 2.75], color: "#7B1E3A", radius: 30000, desc: "Dans le monde des vins mutés, le Roussillon est une superpuissance : il assure à lui seul 80% de la production française. Banyuls, Maury, Rivesaltes : le paradis des vins doux naturels mérite bien une pause... d'autant qu'il réserve beaucoup d'autres surprises ! Sous un ensoleillement exceptionnel, le département des Pyrénées-Orientales abrite pas moins de treize appellations, plantées sur la pointe sud de l'Hexagone. Bordé à l'est par la Méditerranée, au sud par le massif du Canigou et par celui des Corbières au nord, ce terroir abrite des sols très variés, dont l'unité ne se retrouve guère qu'au niveau de l'appellation. Le climat, lui, est partout chaud et sec, à l'exception d'une saison automnale relativement pluvieuse. C'est dans l'ensemble un vignoble très sain, d'autant plus qu'y soufflent des vents forts et réguliers." },
@@ -79,7 +76,6 @@ Comme son nom ne l'indique pas, le vignoble de Savoie déborde en fait sur trois
             radius: region.radius
         }).addTo(map);
 
-        // Tooltip au survol
         circle.bindTooltip(region.name, { direction: "top", sticky: true });
 
         // Clic pour afficher les détails
@@ -98,7 +94,7 @@ Comme son nom ne l'indique pas, le vignoble de Savoie déborde en fait sur trois
         circle.on('mouseover', function() { this.setStyle({ fillOpacity: 0.9, weight: 2 }); });
         circle.on('mouseout', function() { this.setStyle({ fillOpacity: 0.7, weight: 1 }); });
 
-        // 4. Légende dynamique
+        // Légende dynamique
         if(legendContainer) {
             const item = document.createElement('div');
             item.className = 'legend-item';

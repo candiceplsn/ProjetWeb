@@ -1,7 +1,7 @@
-# Web project for web classes
-A website about wines
+# Projet web
+Site web sur de la vente de vin via une cave et carte interractive
 
-Coded in HTML, JS, CSS and php
+Coded en HTML, JS, CSS et php
 
 Credits: Mélissa B., Jeanne M, Candice P., Clarisse A.
 

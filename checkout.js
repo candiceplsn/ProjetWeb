@@ -1,6 +1,6 @@
-// checkout.js - Gestion de la page de commande
+// Gestion de la page de commande
 
-let currentStep = 2; // Commence à l'étape livraison
+let currentStep = 2;
 let orderData = {
     delivery: {},
     payment: {},
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPaymentMethodListener();
 });
 
-// Charger le récapitulatif de commande
+// Chargement du récap de commande
 function loadOrderSummary() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     
@@ -49,7 +49,6 @@ function loadOrderSummary() {
             `;
             orderRecap.innerHTML += recapItem;
 
-            // Résumé sidebar
             const summaryItem = `
                 <div class="summary-item">
                     <span class="summary-item-name">${product.name} <small>(×${item.quantity})</small></span>
@@ -72,7 +71,6 @@ function loadOrderSummary() {
     updateTotals(subtotal, 0);
 }
 
-// Mettre à jour les totaux
 function updateTotals(subtotal, shippingCost) {
     const total = subtotal + shippingCost;
     
@@ -95,7 +93,6 @@ function updateProgressBar() {
     });
 }
 
-// Passer à l'étape paiement
 function goToPayment() {
     const form = document.getElementById('deliveryForm');
     
@@ -104,7 +101,7 @@ function goToPayment() {
         return;
     }
 
-    // Sauvegarder les données de livraison
+    // Sauvegarde des données de livraison
     orderData.delivery = {
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
@@ -118,11 +115,9 @@ function goToPayment() {
         method: document.querySelector('input[name="deliveryMethod"]:checked').value
     };
 
-    // Calculer les frais de livraison
     const shippingCost = orderData.delivery.method === 'express' ? 9.90 : 0;
     updateTotals(orderData.items.reduce((sum, item) => sum + item.total, 0), shippingCost);
 
-    // Changer d'étape
     document.getElementById('step-delivery').style.display = 'none';
     document.getElementById('step-payment').style.display = 'block';
     currentStep = 3;
@@ -130,7 +125,6 @@ function goToPayment() {
     window.scrollTo(0, 0);
 }
 
-// Retour à l'étape livraison
 function goToDelivery() {
     document.getElementById('step-payment').style.display = 'none';
     document.getElementById('step-delivery').style.display = 'block';
@@ -139,7 +133,7 @@ function goToDelivery() {
     window.scrollTo(0, 0);
 }
 
-// Valider la commande
+// Validation de la commande
 function validateOrder() {
     const termsAccepted = document.getElementById('acceptTerms').checked;
     
@@ -149,8 +143,7 @@ function validateOrder() {
     }
 
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-    
-    // Validation des champs de paiement par carte
+    // Pour la carte bancaire
     if (paymentMethod === 'card') {
         const cardNumber = document.getElementById('cardNumber').value;
         const cardExpiry = document.getElementById('cardExpiry').value;
@@ -162,18 +155,16 @@ function validateOrder() {
             return;
         }
     }
-
-    // Sauvegarder les données de paiement
     orderData.payment = {
         method: paymentMethod,
         timestamp: new Date().toISOString()
     };
 
-    // Générer un numéro de commande
+    // Génération d'un numéro de commande
     const orderNumber = 'CMD' + Date.now().toString().slice(-8);
     document.getElementById('orderNumber').textContent = orderNumber;
 
-    // Sauvegarder la commande (tu pourras envoyer ça à un serveur PHP plus tard)
+    // Sauvegarde de la commande
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push({
         orderNumber: orderNumber,
@@ -182,11 +173,9 @@ function validateOrder() {
     });
     localStorage.setItem('orders', JSON.stringify(orders));
 
-    // Vider le panier
+    // Vidage du panier
     localStorage.setItem('cart', JSON.stringify([]));
     updateBadges();
-
-    // Afficher la confirmation
     document.getElementById('step-payment').style.display = 'none';
     document.getElementById('step-confirmation').style.display = 'block';
     currentStep = 4;
@@ -194,7 +183,6 @@ function validateOrder() {
     window.scrollTo(0, 0);
 }
 
-// Écouter les changements de mode de livraison
 document.addEventListener('DOMContentLoaded', function() {
     const deliveryRadios = document.querySelectorAll('input[name="deliveryMethod"]');
     deliveryRadios.forEach(radio => {
@@ -206,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Gérer l'affichage du formulaire selon le mode de paiement
 function setupPaymentMethodListener() {
     const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
     const cardForm = document.getElementById('cardPaymentForm');
@@ -221,8 +208,6 @@ function setupPaymentMethodListener() {
         });
     });
 }
-
-// Formatage automatique du numéro de carte
 document.addEventListener('DOMContentLoaded', function() {
     const cardNumberInput = document.getElementById('cardNumber');
     if (cardNumberInput) {
